@@ -3,8 +3,8 @@
 import { cookies } from "next/headers"
 
 export async function login( emailProp, passwordProp ) {
-  const email = emailProp ?? cookies().get('email')
-  const password = passwordProp ?? cookies().get('password')
+  const email = emailProp ?? cookies().get('email').value
+  const password = passwordProp ?? cookies().get('password').value
 
   const res = await fetch('http://localhost:3000/api/profile/login', {
     method: "POST",

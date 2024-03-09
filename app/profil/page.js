@@ -8,12 +8,12 @@ import AdditionalOptions from "./additional-options";
 
 import { login } from "@/files/js/login";
 
-export async function getData() {
+/*export async function getData() {
   return await login();
-}
+}*/
 
 export default async function Explore() {
-  const data = await getData()
+  const data = await login()
   // const data = {
   //   name: "NAME",
   //   first_name: "Prenume Prenume2",

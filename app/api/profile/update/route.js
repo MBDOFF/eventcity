@@ -1,4 +1,4 @@
-import { client, databases, ID, verify } from "../../../../files/js/db.js";
+import { client, databases, ID, verify } from "@/files/js/db.js";
 import { NextResponse } from "next/server";
 const crypto = require("crypto");
 
