@@ -1,5 +1,7 @@
 'use client'
 
+import c from "@/files/css/pages/login.module.scss"
+
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
@@ -25,7 +27,7 @@ export default function LoginPage() {
       sessionStorage.setItem("password", password)
       router.push('/profil')
     }
-    else alert("Invalid")
+    else if(emailProp && passwordProp) alert("Invalid")
   }
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export default function LoginPage() {
   }, [])
 
   return (
-    <main>
+    <main className={c.login}>
       <input type="text" ref={refEmail} />
       <input type="password" ref={refPass} />
       <button type="button" onClick={() => {login(refEmail.current.value, refPass.current.value)}}>Login</button>
