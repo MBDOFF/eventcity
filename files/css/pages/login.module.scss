@@ -31,6 +31,14 @@
     -webkit-text-fill-color: transparent;
     margin-bottom: 30px;
   }
+  p {
+    font-size: 15px;
+    font-weight: 200;
+    margin-top: 5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   input, button {
     width: 400px;

@@ -6,8 +6,12 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const refNume = useRef();
+  const refPrenume = useRef();
   const refEmail = useRef();
-  const refPass = useRef();
+  const refTel = useRef();
+  const refPassNew1 = useRef();
+  const refPassNew2 = useRef();
   const router = useRouter();
 
   const login = async (emailProp, passwordProp) => {
@@ -38,9 +42,13 @@ export default function LoginPage() {
     <main className={c.login_container}>
       <div className={c.login}>
         <h1>EVENTCITY</h1>
+        <input type="text" ref={refNume} placeholder="Nume..." />
+        <input type="text" ref={refPrenume} placeholder="Prenume..." />
         <input type="text" ref={refEmail} placeholder="Email..." />
-        <input type="password" ref={refPass} placeholder="Parola..." />
-        <button type="button" onClick={() => { login(refEmail.current.value, refPass.current.value) }}>Login</button>
+        <input type="tel" ref={refTel} placeholder="Nr. Telefon..." />
+        <input type="password" ref={refPassNew1} placeholder="Parola..." />
+        <input type="password" ref={refPassNew2} placeholder="Reintrodu parola..." />
+        <button type="button" onClick={() => { login(refEmail.current.value, refPass.current.value) }}>Inregistreaza-te</button>
         <p onClick={() => {router.push("/register")}}>Nu ai cont? Inregistreaza-te</p>
       </div>
     </main>
