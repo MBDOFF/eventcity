@@ -32,11 +32,15 @@
     margin-bottom: 30px;
   }
   p {
-    font-size: 15px;
-    font-weight: 200;
+    font-family: $font_s2;
+    font-size: 13px;
+    font-weight: 400;
     margin-top: 5px;
+
+    transition: transform 0.2s ease-out;
     &:hover {
       cursor: pointer;
+      transform: scale(105%);
     }
   }
 

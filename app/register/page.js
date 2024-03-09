@@ -14,29 +14,33 @@ export default function LoginPage() {
   const refPassNew2 = useRef();
   const router = useRouter();
 
-  const login = async (emailProp, passwordProp) => {
-    const email = emailProp ?? sessionStorage.getItem('email')
-    const password = passwordProp ?? sessionStorage.getItem('password')
-
-    const res = await fetch('/api/profile/login', {
-      method: "POST",
-      body: JSON.stringify({ email, pass: password }),
-      headers: {
-        "content-type": "application/json",
+  const register = async () => {
+    const name = refNume.current.value;
+    const first_name = refPrenume.current.value;
+    const email = refEmail.current.value;
+    const tel = refTel.current.value;
+    const password = refPassNew1.current.value;
+    if (!name || !first_name || !email || !tel || !password)
+      alert("Date incomplete")
+    else if (refPassNew1.current.value != refPassNew2.current.value)
+      alert("Parolele nu coincid");
+    else {
+      const res = await fetch('/api/profile/register', {
+        method: "POST",
+        body: JSON.stringify({ name, prenume: first_name, email, phone: tel, pass: password }),
+        headers: {
+          "content-type": "application/json",
+        }
+      })
+      const reso = await res.json()
+      if (reso.error) alert("Email-ul a fost deja folosit")
+      else {
+        sessionStorage.setItem("email", email)
+        sessionStorage.setItem("password", password)
+        router.push('/profil')
       }
-    })
-    const reso = await res.json()
-    if (reso.user) {
-      sessionStorage.setItem("email", email)
-      sessionStorage.setItem("password", password)
-      router.push('/profil')
     }
-    else if (emailProp && passwordProp) alert("Invalid")
   }
-
-  useEffect(() => {
-    login();
-  }, [])
 
   return (
     <main className={c.login_container}>
@@ -48,8 +52,8 @@ export default function LoginPage() {
         <input type="tel" ref={refTel} placeholder="Nr. Telefon..." />
         <input type="password" ref={refPassNew1} placeholder="Parola..." />
         <input type="password" ref={refPassNew2} placeholder="Reintrodu parola..." />
-        <button type="button" onClick={() => { login(refEmail.current.value, refPass.current.value) }}>Inregistreaza-te</button>
-        <p onClick={() => {router.push("/register")}}>Nu ai cont? Inregistreaza-te</p>
+        <button type="button" onClick={register}>Inregistreaza-te</button>
+        <p onClick={() => { router.push("/login") }}>Ai deja cont? Logheaza-te</p>
       </div>
     </main>
   )
