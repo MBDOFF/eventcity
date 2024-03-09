@@ -1,18 +1,20 @@
 "use client";
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 export default function TestApi() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [value, setValue] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const submitData = { email, pass, phone, name };
+    const submitData = { email, pass, phone, name, type, value };
 
     try {
-      const res = await fetch("http://localhost:3000/api/login", {
+      const res = await fetch("http://localhost:3000/api/profile/update", {
         method: "POST",
         body: JSON.stringify(submitData),
         headers: {
@@ -57,6 +59,18 @@ export default function TestApi() {
           onChange={(e) => setName(e.target.value)}
           placeholder="name"
         />
+        <input
+          type="text"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          placeholder="type"
+        ></input>
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="value"
+        ></input>
         <input type="submit"></input>
       </form>
     </main>
