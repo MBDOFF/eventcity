@@ -28,10 +28,10 @@ export default function Menu() {
         />
         <p>Explorează</p>
       </Link>
-      <Link className={pathname === "/profil" ? c.active : ""} href="/profil">
+      <Link className={pathname === "/profil" || pathname === "/login" || pathname === "/register" ? c.active : ""} href="/profil">
         <ImgGradient src="/icon_profile.png" alt="" size="40px" angle="120deg"
-          c1={pathname === "/profil" ? scss.bg1 : scss.acc1}
-          c2={pathname === "/profil" ? scss.bg1 : scss.acc2}
+          c1={pathname === "/profil" || pathname === "/login" || pathname === "/register" ? scss.bg1 : scss.acc1}
+          c2={pathname === "/profil" || pathname === "/login" || pathname === "/register" ? scss.bg1 : scss.acc2}
         />
         <p>Profil</p>
       </Link>
