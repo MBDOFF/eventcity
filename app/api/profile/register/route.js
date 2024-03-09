@@ -27,6 +27,18 @@ export async function POST(req, res) {
     return NextResponse.json({ error: "User already exists" }, { status: 400 });
   }
 
+  const tagsPromise = databases.getAttribute(
+    "65eba297f2b27e0ab9d0",
+    "65eba31400845ba99440",
+    "tags"
+  );
+
+  const tagsData = (await tagsPromise).elements;
+  const tags = tagsData.reduce((acc, tag) => {
+    acc[tag] = false;
+    return acc;
+  }, {});
+
   const profile = await databases.createDocument(
     "65eba297f2b27e0ab9d0",
     "65eba72d2fab460660a2",
@@ -38,20 +50,7 @@ export async function POST(req, res) {
       phone: data.phone,
       pass: crypto.createHash("md5").update(data.pass).digest("hex"),
       prefs: JSON.stringify({
-        tags: {
-          tech: false,
-          contest: false,
-          meetups: false,
-          conferinte: false,
-          spectacoledans: false,
-          spectacoleteatru: false,
-          spectacoleconcert: false,
-          targuri: false,
-          culinare: false,
-          workshopuri: false,
-          gaming: false,
-          party: false,
-        },
+        tags,
       }),
       vol: JSON.stringify({}),
       socials: JSON.stringify({}),
