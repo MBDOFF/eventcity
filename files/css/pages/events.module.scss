@@ -1,0 +1,108 @@
+@import "@/files/css/base/colors.module.scss";
+@import "@/files/css/base/fonts.scss";
+
+.container_top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.tags {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 200px;
+
+  .tag {
+    display: flex;
+    align-items: center;
+    padding: 2px 8px;
+    background-color: $bg3;
+    border-radius: 100vw;
+    margin-bottom: 7px;
+    margin-right: 7px;
+    p {
+      margin-top: -1px;
+      margin-bottom: 2px;
+      margin-left: 5px;
+      font-size: 15px;
+    }
+    &.active {
+      background-image: linear-gradient(120deg, $acc1, $acc2);
+      p {
+        color: $bg1;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+.events {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+
+  .event {
+    position: relative;
+    width: 700px;
+    height: 200px;
+    margin: 7px 0;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.2s ease-out;
+    box-shadow: 0 0 30px -10px $txt1;
+
+    background-size: cover;
+
+    >div.gr1, >div.gr2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(170deg, $bg1 20%, transparent 70%);
+      opacity: 1;
+      transition: opacity 0.2s ease-out;
+    }
+    >div.gr2 {
+      background-image: linear-gradient(120deg, $acc1, $acc2);
+      opacity: 0.5;
+    }
+    h1 {
+      font-family: $font_s2;
+      font-size: 25px;
+    }
+    h1, p {
+      position: relative;
+      transition: h1 0.2s ease-out, p 0.2s ease-out;
+    }
+    &:hover {
+      cursor: pointer;
+      transform: scale(102%);
+      >div.gr1 {
+        opacity: 0.2;
+      }
+      >div.gr2 {
+        opacity: 0.7;
+      }
+      h1, p {
+        filter: drop-shadow(0 0 2px $bg1);
+      }
+    }
+  }
+}
+.banners {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 200px;
+
+  // >div {
+  //   width: 
+  // }
+}

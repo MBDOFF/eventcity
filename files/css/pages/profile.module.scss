@@ -367,8 +367,14 @@
         }
       }
       .pass, .logout {
+        input {
+          width: 100%;
+          box-sizing: border-box;
+        }
         button {
           width: 100%;
+          box-sizing: border-box;
+          height: 32px;
         }
       }
     }
@@ -379,5 +385,32 @@
         box-sizing: border-box;
       }
     }
+  }
+}
+@media only screen and (max-width: 750px) {
+  .top_container {
+    margin-top: 0;
+    margin-bottom: $menu_height;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .event {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h1 {
+      font-size: 18px !important;
+    }
+    p {
+      font-size: 12px;
+    }
+  }
+  .personal_data {
+    width: 90% !important;
+  }
+  .additional_options {
+    width: 90% !important;
+  }.top_container {
+    padding-top: 20px;
   }
 }
