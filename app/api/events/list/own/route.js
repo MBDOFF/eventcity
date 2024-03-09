@@ -9,7 +9,7 @@ export async function POST(req, res) {
   const data = await req.json();
   console.log(data);
 
-  if (!data.email || !data.pass || !data.event) {
+  if (!data.email || !data.pass) {
     return NextResponse.json(
       { error: "All fields are required" },
       { status: 400 }

@@ -44,6 +44,8 @@ export async function POST(req, res) {
     }
   }
 
+  users = users.map((user) => JSON.stringify(user));
+
   const response = await databases.updateDocument(
     "65eba297f2b27e0ab9d0",
     "65eba31400845ba99440",
