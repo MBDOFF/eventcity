@@ -39,7 +39,8 @@ export async function POST(req, res) {
         tags: data.tags,
         coords: data.coords,
         vol: data.vol,
-        image: data.image
+        image: data.image,
+        author: data.author,
     }
 
     const response = await databases.createDocument(
