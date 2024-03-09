@@ -19,7 +19,7 @@ export async function POST(req, res) {
   const verified = await verify(data.email, data.pass);
 
   if (!verified.status) {
-    return NextResponse.json({ error: verified.error }, { status: 400 });
+    return NextResponse.json(verified, { status: 400 });
   }
 
   const user = verified.user;

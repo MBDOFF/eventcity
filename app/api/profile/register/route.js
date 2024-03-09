@@ -10,8 +10,7 @@ export async function POST(req, res) {
   const data = await req.json();
   console.log(data);
 
-
-  if (!data.email || !data.pass || !data.phone || !data.name) {
+  if (!data.email || !data.pass || !data.phone || !data.name || !data.prenume) {
     return NextResponse.json(
       { error: "All fields are required" },
       { status: 400 }
@@ -35,9 +34,25 @@ export async function POST(req, res) {
     {
       email: data.email,
       name: data.name,
+      prenume: data.prenume,
       phone: data.phone,
       pass: crypto.createHash("md5").update(data.pass).digest("hex"),
-      prefs: JSON.stringify({}),
+      prefs: JSON.stringify({
+        tags: {
+          tech: false,
+          contest: false,
+          meetups: false,
+          conferinte: false,
+          spectacoledans: false,
+          spectacoleteatru: false,
+          spectacoleconcert: false,
+          targuri: false,
+          culinare: false,
+          workshopuri: false,
+          gaming: false,
+          party: false,
+        },
+      }),
       vol: JSON.stringify({}),
       socials: JSON.stringify({}),
     }
