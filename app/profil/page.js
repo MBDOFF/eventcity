@@ -42,10 +42,10 @@ export default function Explore() {
 
   
 
-  return(
+  return user.email ?
     <main className={c.top_container}>
       <PersonalData profile={user} />
       <AdditionalOptions profile={user} />
     </main>
-  );
+    : ""
 }
