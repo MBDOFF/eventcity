@@ -26,11 +26,11 @@ export async function POST(req, res) {
   const user = verified.user;
 
   if (data.type === "fb") {
-    if (!data.value)
+    /*if (!data.value)
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
-      );
+      );*/
 
     user.socials = JSON.parse(user.socials);
     user.socials.fb = data.value;
@@ -46,11 +46,11 @@ export async function POST(req, res) {
 
     return NextResponse.json({ response });
   } else if (data.type === "ig") {
-    if (!data.value)
+    /*if (!data.value)
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
-      );
+      );*/
 
     user.socials = JSON.parse(user.socials);
     user.socials.ig = data.value;
@@ -95,6 +95,40 @@ export async function POST(req, res) {
       user.$id,
       {
         vol: JSON.stringify(data.value),
+      }
+    );
+
+    return NextResponse.json({ response });
+  } else if (data.type === "tel") {
+    if (!data.value)
+      return NextResponse.json(
+        { error: "All fields are required" },
+        { status: 400 }
+      );
+
+    const response = await databases.updateDocument(
+      "65eba297f2b27e0ab9d0",
+      "65eba72d2fab460660a2",
+      user.$id,
+      {
+        phone: data.value,
+      }
+    );
+
+    return NextResponse.json({ response });
+  }else if (data.type === "pass") {
+    if (!data.value)
+      return NextResponse.json(
+        { error: "All fields are required" },
+        { status: 400 }
+      );
+
+    const response = await databases.updateDocument(
+      "65eba297f2b27e0ab9d0",
+      "65eba72d2fab460660a2",
+      user.$id,
+      {
+        pass: crypto.createHash("md5").update(data.value).digest("hex"),
       }
     );
 
