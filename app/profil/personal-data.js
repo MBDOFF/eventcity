@@ -1,14 +1,14 @@
 'use client'
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 import c from "@/files/css/pages/profile.module.scss";
 
 import scss from "@/files/css/base/colors.module.scss";
 import ImgGradient from "@/files/components/img-gradient";
 
-import { updateUser } from "@/files/js/updateUser";
-
 export default function PersonalData({ profile }) {
+  const router = useRouter();
 
   const [editPhone, setEditPhone] = useState(false);
   const [editFb, setEditFb] = useState(false);
@@ -22,20 +22,44 @@ export default function PersonalData({ profile }) {
   const refPassNew1 = useRef();
   const refPassNew2 = useRef();
 
+  const updateUser = async (type, value, passOld) => {
+    const email = sessionStorage.getItem('email')
+    const password = passOld ?? sessionStorage.getItem('password')
+
+    const res = await fetch('/api/profile/update', {
+      method: "POST",
+      body: JSON.stringify({ email, pass: password, type, value }),
+      headers: {
+        "content-type": "application/json",
+      }
+    })
+    const reso = await res.json();
+    if (type == "pass" && !res.error)
+      sessionStorage.setItem("password", value)
+    return reso
+  }
+
   const savePassword = async () => {
     if (refPassNew1.current.value == refPassNew2.current.value)
-      if (refPassOld.current.value) {
-        const res = await updateUser("pass", refPassNew1.current.value, refPassOld.current.value)
-        console.log(res);
-        if (res.error) alert("Parola veche nu este corecta")
-        else {
-          refPassOld.current.value = ""
-          refPassNew1.current.value = ""
-          refPassNew2.current.value = ""
+      if (refPassNew1.current.value != refPassOld.current.value)
+        if (refPassOld.current.value) {
+          const res = await updateUser("pass", refPassNew1.current.value, refPassOld.current.value)
+          if (res.error) alert("Parola veche nu este corecta")
+          else {
+            refPassOld.current.value = ""
+            refPassNew1.current.value = ""
+            refPassNew2.current.value = ""
+          }
         }
-      }
-      else alert("Introduceti parola veche");
-    else alert("Parolele nu coincid");
+        else alert("Introduceti parola veche");
+      else alert("Parola veche nu poate coincide cu cea noua");
+    else alert("Parolele noi nu coincid");
+  }
+
+  const logout = () => {
+    sessionStorage.setItem("email", "")
+    sessionStorage.setItem("password", "")
+    router.push("/login")
   }
 
   return (
@@ -135,6 +159,10 @@ export default function PersonalData({ profile }) {
           <button type="button" onClick={savePassword}>Trimite</button>
         </div>
         {/* ------------------------------------------------------------------------------------ */}
+      </div>
+
+      <div className={c.logout}>
+        <button type="button" onClick={logout}>Logout</button>
       </div>
 
     </div>
