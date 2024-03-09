@@ -1,0 +1,48 @@
+$menu_height: 60px;
+$footer_height: 0px;
+
+$acc1: #EE529E;
+$acc2: #5157F7;
+
+$txt1: #232428;
+$txt2: #18191b;
+$txt3: #080909;
+
+$bg1: #ffffff;
+$bg2: #ededf2;
+$bg3: #d6d6e0;
+
+$shadow: black;
+$placeholder: grey;
+$placeholder_tr: rgba(grey, 0.5);
+$bg_code: #23241F;
+
+$green: #008000;
+$green_dark: #006000;
+$red: #da0000;
+$red_dark: #700000;
+
+:export {
+  menu_height: $menu_height;
+
+  acc1: $acc1;
+  acc2: $acc2;
+
+  txt1: $txt1;
+  txt2: $txt2;
+  txt3: $txt3;
+
+  bg1: $bg1;
+  bg2: $bg2;
+  bg3: $bg3;
+
+  shadow: $shadow;
+  placeholder: $placeholder;
+  placeholder_tr: $placeholder_tr;
+  bg_code: $bg_code;
+  
+  green: $green;
+  green_dark: $green_dark;
+  red: $red;
+  red_dark: $red_dark;
+}

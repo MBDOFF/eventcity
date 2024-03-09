@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+
+
+/*
+  s1 Dela Gothic One
+  s2 Inter
+  s3 Sofia Sans
+  s4 Open Sans
+  s5 Poppins
+
+  c1 Shantell Sans
+  c2 Pacifico
+  c3 Eagle Lake
+  c4 Dancing Script
+
+  m1 Audiowide
+  m2 Rajdhani
+  
+  Thin 100
+  ExtraLight 200
+  Light 300
+  Regular 400
+  Medium 500
+  SemiBold 600
+  Bold 700
+  ExtraBold 800
+  Black 900
+
+  !!! WHEN ADDING NEW FONTS -> UPDATE REACT LIST OF WAITED FONTS !!!
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+$font_s1: 'Dela Gothic One', sans-serif !important;
+$font_s2: 'Inter', sans-serif !important;
+$font_s3: 'Sofia Sans', sans-serif !important;
+$font_s4: 'Open Sans', sans-serif !important;
+$font_s5: 'Poppins', sans-serif !important;
+
+$font_c1: 'Shantell Sans', cursive !important;
+$font_c2: 'Pacifico', cursive !important;
+$font_c3: 'Eagle Lake', cursive !important;
+$font_c4: 'Dancing Script', cursive !important;
+
+$font_m1: 'Audiowide', monospace !important;
+$font_m2: 'Rajdhani', monospace !important;
+
+:export {
+  font_s1: $font_s1;
+  font_s2: $font_s2;
+  font_s3: $font_s3;
+  font_s4: $font_s4;
+  font_s5: $font_s5;
+
+  font_c1: $font_c1;
+  font_c2: $font_c2;
+  font_c3: $font_c3;
+  font_c4: $font_c4;
+
+  font_m1: $font_m1;
+  font_m2: $font_m2;
+}

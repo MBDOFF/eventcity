@@ -1,0 +1,58 @@
+@import "@/files/css/base/colors.module.scss";
+
+
+/* DEFAULT TAG VALUES */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html {
+  font-size: 10px;
+
+  min-height: 100%;
+  position: relative;
+
+  background: #ffffff;
+  background-size: 100% 100%;
+  scroll-behavior: auto;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+a:link,
+a:visited,
+a:link:active,
+a:visited:active {
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+main {
+  width: 100%;
+  min-height: calc(100% - $menu_height - $footer_height);
+  background-color: $bg1;
+  margin-top: $menu_height;
+}
+
+button {
+  background: none;
+}
+
+.smooth_scroll {
+  scroll-behavior: smooth !important;
+}
+.preload {
+  display: block;
+  position: absolute;
+  visibility: hidden;
+
+  max-width: 10vw;
+  max-height: 10vh;
+  overflow: hidden;
+}

@@ -1,0 +1,28 @@
+@import "@/files/css/base/colors.module.scss";
+
+
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+	width: 0.8vw;
+}
+/* Track */
+::-webkit-scrollbar-track {
+	background: $txt3;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: $txt1;
+	border-radius: 100vw;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: lighten($txt1, 10%);
+}
+.hide_scroll {
+  -ms-overflow-style: none !important;  /* Internet Explorer 10+ */
+  scrollbar-width: none !important;  /* Firefox */
+}
+.hide_scroll::-webkit-scrollbar { 
+  display: none !important;  /* Safari and Chrome */
+}
