@@ -25,5 +25,8 @@ export async function verify(email, passs) {
   if (!user) return { error: "User doesn't exist", status: false, user: undefined};
 
   const pass = crypto.createHash("md5").update(passs).digest("hex");
-  return { error: "", status: (user.pass === pass), user: user};
+  const good = (user.pass === pass);
+
+  if (!good) return { error: "Invalid password", status: false, user: undefined};
+  return { status: true, user: user};
 }
