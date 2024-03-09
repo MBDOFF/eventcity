@@ -40,5 +40,5 @@ export async function POST(req, res) {
   }
 
   const events = eventResponse.documents.filter(event => event.organizer === user.$id);
-  return NextResponse.json({ events });
+  return NextResponse.json( events );
 }
