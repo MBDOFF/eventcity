@@ -30,37 +30,15 @@ export async function POST(req, res) {
     );
   }
 
-  const eventResponse = await databases.getDocument(
+  const eventResponse = await databases.listDocuments(
     "65eba297f2b27e0ab9d0",
     "65eba31400845ba99440",
-    data.event
   );
 
   if (!eventResponse) {
-    return NextResponse.json({ error: "Event not found" }, { status: 400 });
+    return NextResponse.json({ error: "Events not found" }, { status: 400 });
   }
 
-  const event = eventResponse.document;
-  if (event.organizer !== user.$id) {
-    return NextResponse.json(
-      { error: "You are not the organizer" },
-      { status: 400 }
-    );
-  }
-
-  if (!data.value) {
-    return NextResponse.json(
-      { error: "All fields are required" },
-      { status: 400 }
-    );
-  }
-
-  const response = await databases.updateDocument(
-    "65eba297f2b27e0ab9d0",
-    "65eba31400845ba99440",
-    data.event,
-    JSON.parse(data.value)
-  );
-
-  return NextResponse.json({ response });
+  const events = eventResponse.documents.filter(event => event.organizer === user.$id);
+  return NextResponse.json({ events });
 }
