@@ -40,7 +40,7 @@ export default function Events() {
     setTags({ ...tagsReduced })
   }
   const getFeatured = async () => {
-
+    return "Hello World";
   }
 
   useEffect(() => {
@@ -68,9 +68,9 @@ export default function Events() {
             </div>
           )}
         </div>
-        <div>
+        <div className={c.container_mid}>
           <EventsComp events={events} tags={tags} />
-          {/* <Cards featured={featured}/> */}
+          <Cards featured={() => getFeatured()}/>
         </div>
       </div>
     </main>
