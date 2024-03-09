@@ -1,4 +1,4 @@
-import { client, databases, ID } from "@/files/js/db.js";
+import { sdk, databases, ID } from "@/files/js/db.js";
 import { NextResponse } from "next/server";
 const crypto = require("crypto");
 
@@ -19,7 +19,8 @@ export async function POST(req, res) {
 
   const findPromise = await databases.listDocuments(
     "65eba297f2b27e0ab9d0",
-    "65eba72d2fab460660a2"
+    "65eba72d2fab460660a2",
+    [sdk.Query.limit(5000)]
   );
 
   const user = findPromise.documents.find((user) => user.email === data.email);

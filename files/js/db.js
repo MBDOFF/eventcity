@@ -1,4 +1,4 @@
-const sdk = require("node-appwrite");
+export const sdk = require("node-appwrite");
 const { Client, Databases } = sdk;
 const crypto = require("crypto");
 
@@ -18,7 +18,8 @@ export const ID = sdk.ID;
 export async function verify(email, passs) {
   const findPromise = await databases.listDocuments(
     "65eba297f2b27e0ab9d0",
-    "65eba72d2fab460660a2"
+    "65eba72d2fab460660a2",
+    [sdk.Query.limit(5000)]
   );
 
   const user = findPromise.documents.find((user) => user.email === email);
