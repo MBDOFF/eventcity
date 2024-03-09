@@ -1,30 +1,41 @@
 'use client'
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import c from "@/files/css/pages/profile.module.scss";
 
 import scss from "@/files/css/base/colors.module.scss";
 import ImgGradient from "@/files/components/img-gradient";
 
-export default function PersonalData({ repo }) {
-  console.log(repo);
-  const profile = {
-    name: "NAME",
-    first_name: "Prenume Prenume2",
-    img: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&q=70&fm=webp",
-    email: "kaka@kaka.com",
-    phone: "089786656",
-    fb: "wsdef",
-    ig: "qsdff",
-  }
+import { updateUser } from "@/files/js/updateUser";
+
+export default function PersonalData({ profile }) {
 
   const [editPhone, setEditPhone] = useState(false);
   const [editFb, setEditFb] = useState(false);
   const [editIg, setEditIg] = useState(false);
   const [editPass, setEditPass] = useState(false);
 
-  const updateProfile = () => {
-    alert(1);
+  const refPhone = useRef();
+  const refFb = useRef();
+  const refIg = useRef();
+  const refPassOld = useRef();
+  const refPassNew1 = useRef();
+  const refPassNew2 = useRef();
+
+  const savePassword = async () => {
+    if (refPassNew1.current.value == refPassNew2.current.value)
+      if (refPassOld.current.value) {
+        const res = await updateUser("pass", refPassNew1.current.value, refPassOld.current.value)
+        console.log(res);
+        if (res.error) alert("Parola veche nu este corecta")
+        else {
+          refPassOld.current.value = ""
+          refPassNew1.current.value = ""
+          refPassNew2.current.value = ""
+        }
+      }
+      else alert("Introduceti parola veche");
+    else alert("Parolele nu coincid");
   }
 
   return (
@@ -48,9 +59,9 @@ export default function PersonalData({ repo }) {
         <div>
           <p>Phone:</p>
           <input className={editPhone ? "" : c.disabled} disabled={editPhone ? false : true}
-            type="text" defaultValue={profile.phone}
+            type="text" defaultValue={profile.phone} ref={refPhone}
           />
-          <button type="button" onClick={() => { if (editPhone) updateProfile(); setEditPhone(!editPhone) }}>
+          <button type="button" onClick={() => { if (editPhone) updateUser("phone", refPhone.current.value); setEditPhone(!editPhone) }}>
             <div className={c.normal}>
               <ImgGradient size="30px" alt="" c1={scss.txt1}
                 src={editPhone ? "/icon_check.png" : "/icon_edit.png"}
@@ -67,9 +78,9 @@ export default function PersonalData({ repo }) {
         <div>
           <p>Facebook:</p>
           <input className={editFb ? "" : c.disabled} disabled={editFb ? false : true}
-            type="text" defaultValue={profile.fb}
+            type="text" defaultValue={profile.fb} ref={refFb}
           />
-          <button type="button" onClick={() => { if (editFb) updateProfile(); setEditFb(!editFb) }}>
+          <button type="button" onClick={() => { if (editFb) updateUser("fb", refFb.current.value); setEditFb(!editFb) }}>
             <div className={c.normal}>
               <ImgGradient size="30px" alt="" c1={scss.txt1}
                 src={editFb ? "/icon_check.png" : "/icon_edit.png"}
@@ -86,9 +97,9 @@ export default function PersonalData({ repo }) {
         <div>
           <p>Instagram:</p>
           <input className={editIg ? "" : c.disabled} disabled={editIg ? false : true}
-            type="text" defaultValue={profile.ig}
+            type="text" defaultValue={profile.ig} ref={refIg}
           />
-          <button type="button" onClick={() => { if (editIg) updateProfile(); setEditIg(!editIg) }}>
+          <button type="button" onClick={() => { if (editIg) updateUser("ig", refIg.current.value); setEditIg(!editIg) }}>
             <div className={c.normal}>
               <ImgGradient size="30px" alt="" c1={scss.txt1}
                 src={editIg ? "/icon_check.png" : "/icon_edit.png"}
@@ -118,10 +129,10 @@ export default function PersonalData({ repo }) {
           </button>
         </div>
         <div className={editPhone ? c.pass : `${c.pass} ${c.disabled}`}>
-          <input type="password" placeholder="Parola veche..." />
-          <input type="password" placeholder="Parola noua..." />
-          <input type="password" placeholder="Repeta parola noua..." />
-          <button type="button">Trimite</button>
+          <input type="password" ref={refPassOld} placeholder="Parola veche..." />
+          <input type="password" ref={refPassNew1} placeholder="Parola noua..." />
+          <input type="password" ref={refPassNew2} placeholder="Repeta parola noua..." />
+          <button type="button" onClick={savePassword}>Trimite</button>
         </div>
         {/* ------------------------------------------------------------------------------------ */}
       </div>

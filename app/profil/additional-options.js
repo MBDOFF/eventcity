@@ -1,5 +1,9 @@
-export default function AdditionalOptions() {
+export default function AdditionalOptions({ profile }) {
   return (
-    <div></div>
+    <div >
+      <div>
+
+      </div>
+    </div>
   );
 }
