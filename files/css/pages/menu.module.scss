@@ -7,6 +7,7 @@
   padding: 0 20px;
 
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   display: flex;
@@ -15,6 +16,8 @@
 
   border-radius: 0 0 50px 0;
   box-shadow: 0 0 50px 0 $shadow;
+
+  background-color: $bg1;
 
   a {
     display: flex;
@@ -38,9 +41,11 @@
       transition: max-width 0.2s linear;
     }
 
-    &:hover {
-      p {
-        max-width: 200px;
+    @media only screen and (min-width: 500px) {
+      &:hover {
+        p {
+          max-width: 200px;
+        }
       }
     }
     &.active {
@@ -55,5 +60,15 @@
         -webkit-text-fill-color: transparent;
       }
     }
+  }
+}
+@media only screen and (max-width: 750px) {
+  .menu {
+    width: 100%;
+    top: auto;
+    left: 0;
+    bottom: 0;
+    border-radius: 0;
+    box-sizing: border-box;
   }
 }

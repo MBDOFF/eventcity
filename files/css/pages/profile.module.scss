@@ -236,6 +236,9 @@
     width: 500px;
     margin-bottom: 20px;
 
+    >h1 {
+      font-size: 35px;
+    }
     textarea, button {
       width: 400px;
       font-size: 15px;
@@ -266,6 +269,115 @@
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+  }
+  .operator {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px;
+
+    background-color: $bg2;
+    border-radius: 20px;
+
+    width: 500px;
+    margin-bottom: 20px;
+
+    >h1 {
+      font-size: 35px;
+    }
+    .event {
+      position: relative;
+      width: 100%;
+      height: 90px;
+      margin: 7px 0;
+      padding: 5px 10px;
+      box-sizing: border-box;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.2s ease-out;
+
+      >div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(120deg, $acc1, $acc2);
+        opacity: 0.8;
+        transition: opacity 0.2s ease-out;
+      }
+      h1 {
+        font-family: $font_s2;
+        font-size: 25px;
+      }
+      h1, p {
+        position: relative;
+        transition: h1 0.2s ease-out, p 0.2s ease-out;
+      }
+      &:hover {
+        cursor: pointer;
+        transform: scale(102%);
+        >div {
+          opacity: 0.3;
+        }
+        h1, p {
+          filter: drop-shadow(0 0 2px $bg1);
+        }
+      }
+    }
+    .add_event {
+      width: 100%;
+      margin: 7px 0;
+      padding: 5px 10px;
+
+      box-sizing: border-box;
+      border-radius: 20px;
+      border: 3px solid $bg3;
+
+      background-color: $bg1;
+      font-family: inherit;
+      font-size: 15px;
+
+      &:hover {
+        cursor: pointer;
+        color: $bg1;
+        background-image: linear-gradient(120deg, $acc1, $acc2);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .top_container {
+    flex-direction: column;
+    align-items: center;
+
+    .personal_data {
+      width: 70%;
+      margin-bottom: 20px;
+      .other_data {
+        width: 100%;
+        input {
+          width: 100%;
+        }
+        p, button {
+          flex-shrink: 0;
+        }
+      }
+      .pass, .logout {
+        button {
+          width: 100%;
+        }
+      }
+    }
+    .additional_options {
+      width: 70%;
+      >* {
+        width: 100%;
+        box-sizing: border-box;
+      }
     }
   }
 }

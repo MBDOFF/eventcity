@@ -66,7 +66,7 @@ export default function PersonalData({ profile }) {
     <div className={c.personal_data}>
       {/* -------------------------------------- NAME & IMG --------------------------------------- */}
       <div className={c.name_container}>
-        <img src={profile.img} alt="" />
+        <img src={profile.image} alt="" />
         <div>
           <p className={c.name}>{profile.name}</p>
           <p className={c.first_name}>{profile.prenume}</p>
@@ -85,7 +85,7 @@ export default function PersonalData({ profile }) {
           <input className={editPhone ? "" : c.disabled} disabled={editPhone ? false : true}
             type="text" defaultValue={profile.phone} ref={refPhone}
           />
-          <button type="button" onClick={() => { if (editPhone) updateUser("phone", refPhone.current.value); setEditPhone(!editPhone) }}>
+          <button type="button" onClick={() => { if (editPhone) updateUser("tel", refPhone.current.value); setEditPhone(!editPhone) }}>
             <div className={c.normal}>
               <ImgGradient size="30px" alt="" c1={scss.txt1}
                 src={editPhone ? "/icon_check.png" : "/icon_edit.png"}
