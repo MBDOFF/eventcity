@@ -1,4 +1,5 @@
 @import "@/files/css/base/colors.module.scss";
+@import "@/files/css/base/fonts.scss";
 
 
 /* DEFAULT TAG VALUES */
@@ -9,7 +10,10 @@
 }
 
 html {
-  font-size: 10px;
+  font-family: $font_m1;
+  font-size: 20px;
+  font-weight: 400;
+  color: $txt1;
 
   min-height: 100%;
   position: relative;
