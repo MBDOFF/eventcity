@@ -69,7 +69,7 @@ export default function PersonalData({ profile }) {
         <img src={profile.img} alt="" />
         <div>
           <p className={c.name}>{profile.name}</p>
-          <p className={c.first_name}>{profile.first_name}</p>
+          <p className={c.first_name}>{profile.prenume}</p>
         </div>
       </div>
 
@@ -138,19 +138,7 @@ export default function PersonalData({ profile }) {
         </div>
         {/* -------------------------------------- PASSWORD --------------------------------------- */}
         <div>
-          <p style={{ width: "416px" }}>Change Password:</p>
-          <button type="button" onClick={() => { setEditPass(!editPass) }}>
-            <div className={c.normal}>
-              <ImgGradient size="30px" alt="" c1={scss.txt1}
-                src={editPass ? "/icon_check.png" : "/icon_edit.png"}
-              />
-            </div>
-            <div className={c.hover}>
-              <ImgGradient size="30px" alt="" c1={scss.acc1} c2={scss.acc2}
-                src={editPass ? "/icon_check.png" : "/icon_edit.png"}
-              />
-            </div>
-          </button>
+          <p style={{ width: "416px", marginTop: "5px",marginBottom: "12px" }}>Change Password:</p>
         </div>
         <div className={editPhone ? c.pass : `${c.pass} ${c.disabled}`}>
           <input type="password" ref={refPassOld} placeholder="Parola veche..." />
