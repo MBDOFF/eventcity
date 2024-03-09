@@ -12,7 +12,7 @@ export default function TestApi() {
     const submitData = { email, pass, phone, name };
 
     try {
-      const res = await fetch("http://localhost:3000/api/register", {
+      const res = await fetch("http://localhost:3000/api/login", {
         method: "POST",
         body: JSON.stringify(submitData),
         headers: {
@@ -31,7 +31,7 @@ export default function TestApi() {
   };
 
   return (
-    <>
+    <main>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -59,6 +59,6 @@ export default function TestApi() {
         />
         <input type="submit"></input>
       </form>
-    </>
+    </main>
   );
 }
