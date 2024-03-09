@@ -38,6 +38,7 @@ export async function POST(req, res) {
       phone: data.phone,
       pass: crypto.createHash("md5").update(data.pass).digest("hex"),
       prefs: JSON.stringify({}),
+      vol: JSON.stringify({}),
       socials: JSON.stringify({}),
     }
   );
