@@ -14,7 +14,7 @@ export default function TestApi() {
     const submitData = { email, pass, phone, name, type, value };
 
     try {
-      const res = await fetch("http://localhost:3000/api/profile/update", {
+      const res = await fetch("http://localhost:3000/api/profile/login", {
         method: "POST",
         body: JSON.stringify(submitData),
         headers: {
