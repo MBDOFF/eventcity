@@ -1,6 +1,14 @@
 @import "@/files/css/base/colors.module.scss";
 @import "@/files/css/base/fonts.scss";
 
+.login_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - $menu_height);
+}
+
 .login {
   display: flex;
   flex-direction: column;
@@ -9,6 +17,21 @@
 
   width: 500px;
 
+  background-color: $bg2;
+  padding: 40px 20px;
+  border-radius: 20px;
+
+  h1 {
+    font-size: 50px;
+    font-weight: 500;
+    color: $acc2;
+    background: linear-gradient(120deg, $acc2, $acc1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+  }
+
   input, button {
     width: 400px;
     font-size: 15px;
@@ -16,7 +39,7 @@
     border-radius: 10px;
     border: 3px solid $bg3;
     background-color: $bg1;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
   }
   button {
     font-family: inherit;
@@ -24,6 +47,8 @@
     margin: 0;
     padding: 0 5px;
     box-sizing: content-box;
+
+    margin-top: 5px;
 
     &:hover {
       cursor: pointer;

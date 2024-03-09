@@ -10,24 +10,24 @@ export default function LoginPage() {
   const refPass = useRef();
   const router = useRouter();
 
-  const login = async ( emailProp, passwordProp ) => {
+  const login = async (emailProp, passwordProp) => {
     const email = emailProp ?? sessionStorage.getItem('email')
     const password = passwordProp ?? sessionStorage.getItem('password')
-  
+
     const res = await fetch('/api/profile/login', {
       method: "POST",
-      body: JSON.stringify({email, pass: password}),
+      body: JSON.stringify({ email, pass: password }),
       headers: {
         "content-type": "application/json",
       }
     })
     const reso = await res.json()
-    if(reso.user) {
+    if (reso.user) {
       sessionStorage.setItem("email", email)
       sessionStorage.setItem("password", password)
       router.push('/profil')
     }
-    else if(emailProp && passwordProp) alert("Invalid")
+    else if (emailProp && passwordProp) alert("Invalid")
   }
 
   useEffect(() => {
@@ -35,10 +35,13 @@ export default function LoginPage() {
   }, [])
 
   return (
-    <main className={c.login}>
-      <input type="text" ref={refEmail} />
-      <input type="password" ref={refPass} />
-      <button type="button" onClick={() => {login(refEmail.current.value, refPass.current.value)}}>Login</button>
+    <main className={c.login_container}>
+      <div className={c.login}>
+        <h1>EVENTCITY</h1>
+        <input type="text" ref={refEmail} />
+        <input type="password" ref={refPass} />
+        <button type="button" onClick={() => { login(refEmail.current.value, refPass.current.value) }}>Login</button>
+      </div>
     </main>
   )
 }
