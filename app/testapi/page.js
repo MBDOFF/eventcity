@@ -2,19 +2,15 @@
 import { useState, useEffect } from "react";
 
 export default function TestApi() {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [phone, setPhone] = useState("");
-  const [name, setName] = useState("");
-  const [type, setType] = useState("");
-  const [value, setValue] = useState("");
+  const [lat, setLat] = useState("");
+  const [lon, setLon] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const submitData = { email, pass, phone, name, type, value };
+    const submitData = { lat, lon };
 
     try {
-      const res = await fetch("http://localhost:3000/api/profile/update", {
+      const res = await fetch("http://localhost:3000/api/events/list/near", {
         method: "POST",
         body: JSON.stringify(submitData),
         headers: {
@@ -37,40 +33,17 @@ export default function TestApi() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="email"
+          value={lat}
+          onChange={(e) => setLat(e.target.value)}
+          placeholder="lat"
         />
         <input
           type="text"
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
-          placeholder="password"
+          value={lon}
+          onChange={(e) => setLon(e.target.value)}
+          placeholder="lon"
         />
-        <input
-          type="text"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder="phone"
-        />
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="name"
-        />
-        <input
-          type="text"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-          placeholder="type"
-        ></input>
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder="value"
-        ></input>
+        
         <input type="submit"></input>
       </form>
     </main>
