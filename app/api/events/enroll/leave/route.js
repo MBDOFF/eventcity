@@ -35,7 +35,7 @@ export async function POST(req, res) {
   }
 
   const event = eventResponse.document;
-  const users = event.users || [];
+  const users = event.users.map((user) => JSON.parse(user)) || [];
 
   for (let i = 0; i < users.length; i++) {
     if (users[i].user === user.$id) {
@@ -44,14 +44,14 @@ export async function POST(req, res) {
     }
   }
 
-  const usersS = users.map((user) => JSON.stringify(user));
+  ///const usersS = users.map((user) => JSON.stringify(user));
 
   const response = await databases.updateDocument(
     "65eba297f2b27e0ab9d0",
     "65eba31400845ba99440",
     data.event,
     {
-      users: usersS,
+      users: users,
     }
   );
 
