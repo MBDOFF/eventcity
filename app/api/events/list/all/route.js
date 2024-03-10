@@ -14,5 +14,6 @@ export async function GET() {
     return daysUntilDate(dateA) - daysUntilDate(dateB);
   });
 
+  listPromise.documents = listPromise.documents.filter((event) => daysUntilDate(event.date.split(":")[0]) >= 0);
   return NextResponse.json(listPromise.documents);
 }
