@@ -34,7 +34,7 @@ export async function POST(req, res) {
     return NextResponse.json({ error: "Event not found" }, { status: 400 });
   }
 
-  const event = eventResponse.document;
+  const event = eventResponse;
   const users = event.users || [];
   
   if(data.type === "user"){
