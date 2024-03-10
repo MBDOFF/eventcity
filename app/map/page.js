@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Map from "@/files/components/Map";
 import c from "@/files/css/pages/events.module.scss"
 import HTMLReactParser from "html-react-parser";
+import { useRouter } from 'next/navigation'
 
 export default function MapPage() {
   const [events, setEvents] = useState([]);
@@ -12,6 +13,8 @@ export default function MapPage() {
     const reso = await res.json();
     setEvents([...reso]);
   };
+
+  const router = useRouter()
 
   useEffect(() => {
     getEvents();
