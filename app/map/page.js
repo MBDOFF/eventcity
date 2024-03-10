@@ -21,7 +21,7 @@ export default function MapPage() {
   }, []);
 
   return (
-    <main>
+    <div style={{width: "100vw", height: "100vh"}}>
       <Map width="800" height="400" center={[45.75372, 21.22571]} zoom={15}>
         {({ TileLayer, Marker, Popup }) => (
           <>
@@ -71,6 +71,6 @@ export default function MapPage() {
           </>
         )}
       </Map>
-    </main>
+    </div>
   );
 }

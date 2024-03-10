@@ -28,6 +28,13 @@ export default function Menu() {
         />
         <p>Explorează</p>
       </Link>
+      <Link className={pathname === "/map" ? c.active : ""} href="/map">
+        <ImgGradient src="/icon_map.png" alt="" size="40px" angle="120deg"
+          c1={pathname === "/map" ? scss.bg1 : scss.acc1}
+          c2={pathname === "/map" ? scss.bg1 : scss.acc2}
+        />
+        <p>Hartă</p>
+      </Link>
       <Link className={pathname === "/profil" || pathname === "/login" || pathname === "/register" ? c.active : ""} href="/profil">
         <ImgGradient src="/icon_profile.png" alt="" size="40px" angle="120deg"
           c1={pathname === "/profil" || pathname === "/login" || pathname === "/register" ? scss.bg1 : scss.acc1}

@@ -12,6 +12,8 @@ export default function EventPage({ params }) {
   const [eventData, setEventData] = useState({});
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isUser, setIsUser] = useState(false);
+  const [isVol, setIsVol] = useState(false);
 
   const getEvent = async () => {
     const res = await fetch("/api/events/list/get", {
@@ -19,6 +21,7 @@ export default function EventPage({ params }) {
       body: JSON.stringify({ id: params.id })
     })
     const reso = await res.json();
+    console.log(reso)
     setEventData({ ...reso });
     setIsLoading(false);
   }
