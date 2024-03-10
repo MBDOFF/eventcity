@@ -38,7 +38,6 @@ export async function POST(req, res) {
   var _year2 = parseInt(_parts2[2]);
   var _targetDate2 = new Date(_year2, _month2, _day2);
 
-
   for (let i = 0; i < eventResponse.documents.length; i++) {
     const event = eventResponse.documents[i];
     const interval = event.date.split(":");
@@ -58,17 +57,26 @@ export async function POST(req, res) {
       var year2 = parseInt(parts2[2]);
       targetDate2 = new Date(year2, month2, day2);
     }
-    
-   // i want all the events that any of dates between _targetDate and _targetDate2 are between targetDate1 and targetDate2
-    if ((_targetDate <= targetDate2 && _targetDate2 >= targetDate1) || (_targetDate2 >= targetDate1 && _targetDate <= targetDate2)) {
+
+    // i want all the events that any of dates between _targetDate and _targetDate2 are between targetDate1 and targetDate2
+    if (
+      (_targetDate <= targetDate2 && _targetDate2 >= targetDate1) ||
+      (_targetDate2 >= targetDate1 && _targetDate <= targetDate2)
+    ) {
       eventResponse.documents[i].date = interval[0];
       if (isMulti) eventResponse.documents[i].date += ":" + interval[1];
     } else {
       eventResponse.documents.splice(i, 1);
       i--;
     }
-
   }
+
+  // sort by date
+  eventResponse.documents.sort((a, b) => {
+    const dateA = a.date.split(":")[0];
+    const dateB = b.date.split(":")[0];
+    return new Date(dateA) - new Date(dateB);
+  });
 
   return NextResponse.json(eventResponse.documents);
 }

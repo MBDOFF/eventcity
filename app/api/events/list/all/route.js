@@ -8,5 +8,12 @@ export async function GET() {
     [sdk.Query.limit(5000)]
   );
 
+  // sort by date
+  listPromise.documents.sort((a, b) => {
+    const dateA = a.date.split(":")[0];
+    const dateB = b.date.split(":")[0];
+    return new Date(dateA) - new Date(dateB);
+  });
+
   return NextResponse.json(listPromise.documents);
 }
