@@ -28,15 +28,33 @@ export async function POST(req, res) {
 
   function removeDiacritics(str) {
     const diacriticsMap = {
-      'ă': 'a', 'â': 'a', 'î': 'i', 'ș': 's', 'ț': 't',
-      'Ă': 'A', 'Â': 'A', 'Î': 'I', 'Ș': 'S', 'Ț': 'T'
+      ă: "a",
+      â: "a",
+      î: "i",
+      ș: "s",
+      ț: "t",
+      Ă: "A",
+      Â: "A",
+      Î: "I",
+      Ș: "S",
+      Ț: "T",
     };
 
-    return str.replace(/[ăâîșțĂÂÎȘȚ]/g, match => diacriticsMap[match]);
+    return str.replace(/[ăâîșțĂÂÎȘȚ]/g, (match) => diacriticsMap[match]);
   }
 
-  const filteredEvents = eventResponse.documents.filter(event => {
-    return removeDiacritics(event.city.toLowerCase()) === removeDiacritics(data.city.toLowerCase());
+  const filteredEvents = eventResponse.documents.filter((event) => {
+    return (
+      removeDiacritics(event.city.toLowerCase()) ===
+      removeDiacritics(data.city.toLowerCase())
+    );
+  });
+
+  // sort by date
+  filteredEvents.sort((a, b) => {
+    const dateA = a.date.split(":")[0];
+    const dateB = b.date.split(":")[0];
+    return new Date(dateA) - new Date(dateB);
   });
 
   return NextResponse.json(filteredEvents);
