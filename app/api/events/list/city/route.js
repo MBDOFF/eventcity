@@ -50,11 +50,11 @@ export async function POST(req, res) {
     );
   });
 
-  // sort by date
-  filteredEvents.sort((a, b) => {
+
+  listPromise.documents.sort((a, b) => {
     const dateA = a.date.split(":")[0];
     const dateB = b.date.split(":")[0];
-    return new Date(dateA) - new Date(dateB);
+    return daysUntilDate(dateA) - daysUntilDate(dateB);
   });
 
   return NextResponse.json(filteredEvents);

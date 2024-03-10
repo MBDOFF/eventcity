@@ -1,4 +1,4 @@
-import { databases, sdk } from "@/files/js/db.js";
+import { databases, sdk, daysUntilDate } from "@/files/js/db.js";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -8,11 +8,10 @@ export async function GET() {
     [sdk.Query.limit(5000)]
   );
 
-  // sort by date
   listPromise.documents.sort((a, b) => {
     const dateA = a.date.split(":")[0];
     const dateB = b.date.split(":")[0];
-    return new Date(dateA) - new Date(dateB);
+    return daysUntilDate(dateA) - daysUntilDate(dateB);
   });
 
   return NextResponse.json(listPromise.documents);
