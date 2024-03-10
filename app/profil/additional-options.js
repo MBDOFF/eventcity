@@ -47,7 +47,6 @@ export default function AdditionalOptions({ profile }) {
       }
     })
     const reso = await res.json();
-    console.log(reso);
     setOp(reso);
   }
   useEffect(() => {
@@ -58,7 +57,6 @@ export default function AdditionalOptions({ profile }) {
     let tags2 = tags;
     tags2[tag] = !tags2[tag];
     setTags({ ...tags2 });
-    console.log(tag, tags);
 
     const email = sessionStorage.getItem('email')
     const password = sessionStorage.getItem('password')
@@ -76,7 +74,7 @@ export default function AdditionalOptions({ profile }) {
       {/* ------------------------------------------ TAGS -------------------------------------------- */}
       <div className={c.tags}>
         {Object.keys(tags).map((tag) =>
-          <div className={tags[tag] ? `${c.tag} ${c.active}` : c.tag} onClick={() => { toggleTag(tag) }}>
+          <div className={tags[tag] ? `${c.tag} ${c.active}` : c.tag} onClick={() => { toggleTag(tag) }} key={tag}>
             <ImgGradient size="15px" alt="" c1={tags[tag] ? scss.bg1 : scss.txt1}
               src={tags[tag] ? "/icon_check.png" : "/icon_x.png"}
             />
@@ -110,9 +108,9 @@ export default function AdditionalOptions({ profile }) {
         <div className={c.operator}>
           <h1>Profil Operator Evenimente</h1>
           <p>{profile.name + " " + profile.prenume}</p>
-          {op.map((ee) =>
+          {op.map((ee, index) =>
             <div className={c.event} style={{ backgroundImage: 'url("' + ee.image + '")' }}
-              onClick={() => { router.push("/events/" + ee.$id) }}
+              onClick={() => { router.push("/events/" + ee.$id) }} key={index}
             >
               <div></div>
               <h1>{ee.name}</h1>

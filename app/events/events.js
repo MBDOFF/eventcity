@@ -13,8 +13,8 @@ export default function Events({ events, tags }) {
 
   return (
     <div className={c.events}>
-      {filteredEvents.map((ee) =>
-        <div className={c.event} style={{ backgroundImage: 'url("' + ee.image + '")' }}
+      {filteredEvents.map((ee, index) =>
+        <div key={index} className={c.event} style={{ backgroundImage: 'url("' + ee.image + '")' }}
           onClick={() => { router.push("/events/" + ee.$id) }}
         >
           <div className={c.gr2}></div>
@@ -23,7 +23,7 @@ export default function Events({ events, tags }) {
           <h1>{ee.name}</h1>
           <p>{HTMLReactParser(
             ee.tags + "<br/>" +
-            ee.location + "<br/>" + 
+            ee.city + " - " + ee.location + "<br/>" + 
             ee.date.slice(0, 10) + " - " + ee.start
           )}</p>
         </div>

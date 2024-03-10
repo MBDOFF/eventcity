@@ -11,11 +11,13 @@ import c from "@/files/css/pages/events.module.scss"
 export default function Events() {
   const [events, setEvents] = useState([]);
   const [tags, setTags] = useState([]);
+  const [featured, setFeatured] = useState({});
 
   const getEvents = async () => {
     const res = await fetch("/api/events/list/all")
     const reso = await res.json()
     setEvents([...reso]);
+    setFeatured({...reso[0]});
   }
   const getPrefs = async () => {
     const email = sessionStorage.getItem("email");
@@ -25,7 +27,6 @@ export default function Events() {
       body: JSON.stringify({ email, pass: password })
     })
     const reso = await res.json()
-    console.log(reso)
     if (reso.error) getTags()
     else setTags({ ...JSON.parse(reso.user.prefs).tags })
   }
@@ -36,17 +37,28 @@ export default function Events() {
       acc[tag] = false;
       return acc;
     }, {});
-    console.log(tagsReduced)
     setTags({ ...tagsReduced })
   }
   const getFeatured = async () => {
-    return "Hello World";
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const lat = position.coords.latitude;
+        const long = position.coords.longitude;
+        const res = await fetch("/api/events/list/near", {
+          method: "POST",
+          body: JSON.stringify({lat, long}),
+        })
+        const reso = await res.json();
+        console.log(reso);
+        setFeatured({...reso[0]});
+      });
+    }
   }
 
   useEffect(() => {
     getEvents()
     getPrefs()
-    //getFeatured()
+    getFeatured()
   }, [])
 
   const toggleTag = (tag) => {
@@ -60,7 +72,7 @@ export default function Events() {
       <div className={c.container_top}>
         <div className={c.tags}>
           {Object.keys(tags).map((tag) =>
-            <div className={tags[tag] ? `${c.tag} ${c.active}` : c.tag} onClick={() => { toggleTag(tag) }}>
+            <div className={tags[tag] ? `${c.tag} ${c.active}` : c.tag} onClick={() => { toggleTag(tag) }} key={tag}>
               <ImgGradient size="15px" alt="" c1={tags[tag] ? scss.bg1 : scss.txt1}
                 src={tags[tag] ? "/icon_check.png" : "/icon_x.png"}
               />
@@ -70,7 +82,7 @@ export default function Events() {
         </div>
         <div className={c.container_mid}>
           <EventsComp events={events} tags={tags} />
-          <Cards featured={() => getFeatured()}/>
+          <Cards featured={featured}/>
         </div>
       </div>
     </main>
