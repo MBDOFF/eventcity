@@ -9,12 +9,12 @@ export async function POST(req, res) {
   const data = await req.json();
   console.log(data);
 
-  if (!data.lat || !data.lon) {
+  /*if (!data.lat || !data.lon) {
     return NextResponse.json(
       { error: "All fields are required" },
       { status: 400 }
     );
-  }
+  }*/
 
   const eventResponse = await databases.listDocuments(
     "65eba297f2b27e0ab9d0",
@@ -30,24 +30,23 @@ export async function POST(req, res) {
 
   for (let i = 0; i < eventResponse.documents.length; i++) {
     const event = eventResponse.documents[i];
-    const distance = calcCrow(
-      data.lat,
-      data.lon,
-      event.coords.split(",")[0],
-      event.coords.split(",")[1]
-    );
+    let distance = 0;
+    if (data.lat && data.lon) {
+      distance = calcCrow(
+        data.lat,
+        data.lon,
+        event.coords.split(",")[0],
+        event.coords.split(",")[1]
+      );
+    }
     const days = daysUntilDate(event.date.split(":")[0]);
     distances.push({ id: event.$id, distance, days, i });
   }
 
-  //distances.sort((a, b) => a.distance - b.distance);
-  // sort by days and distance, the soonest and closest first, ignore the events that already happened
   distances = distances.filter((event) => event.days >= 0);
-  distances.sort((a, b) => a.days - b.days || a.distance - b.distance);
+  if (data.lat && data.lon) distances.sort((a, b) => a.days - b.days || a.distance - b.distance);
   distances[0].data = eventResponse.documents[distances[0].i];
 
-  //const events = eventResponse.documents.filter(event => event.organizer === user.$id);
-  //const events = eventResponse.documents;
   return NextResponse.json(distances);
 }
 
