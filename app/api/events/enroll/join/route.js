@@ -49,14 +49,14 @@ export async function POST(req, res) {
     users.push({ user: user.$id, type: "volunteer", status: "pending"});
   }
 
-  users = users.map(user => JSON.stringify(user));
+  const usersS = users.map(user => JSON.stringify(user));
 
   const response = await databases.updateDocument(
     "65eba297f2b27e0ab9d0",
     "65eba31400845ba99440",
     data.event,
     {
-        users: users
+        users: usersS
     }
   );
 
