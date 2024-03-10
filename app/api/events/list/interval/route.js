@@ -50,7 +50,7 @@ export async function POST(req, res) {
     var targetDate1 = new Date(year1, month1 - 1, day1);
 
     const isMulti = interval[1] !== "undefined";
-    var targetDate2 = undefined;
+    var targetDate2 = new Date(year1, month1 - 1, day1);
     if (isMulti) {
       var parts2 = interval[1].split(".");
       var day2 = parseInt(parts2[0]);
@@ -59,16 +59,13 @@ export async function POST(req, res) {
       targetDate2 = new Date(year2, month2 - 1, day2);
     }
     
-    if (isMulti) {
-      if (_targetDate < targetDate1 || _targetDate2 > targetDate2) {
-        eventResponse.documents.splice(i, 1);
-        i--;
-      }
+   // i want all the events that any of dates between _targetDate and _targetDate2 are between targetDate1 and targetDate2
+    if ((_targetDate <= targetDate2 && _targetDate2 >= targetDate1) || (_targetDate2 >= targetDate1 && _targetDate <= targetDate2)) {
+      eventResponse.documents[i].date = interval[0];
+      if (isMulti) eventResponse.documents[i].date += ":" + interval[1];
     } else {
-      if (_targetDate < targetDate1 || _targetDate > targetDate1) {
-        eventResponse.documents.splice(i, 1);
-        i--;
-      }
+      eventResponse.documents.splice(i, 1);
+      i--;
     }
 
   }
