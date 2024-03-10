@@ -26,5 +26,5 @@ export async function POST(req, res) {
     return NextResponse.json({ error: "Events not found" }, { status: 400 });
   }
 
-  return NextResponse.json(eventResponse.documents.filter(event => event.city === data.city));
+  return NextResponse.json(eventResponse.documents.filter(event => event.city.toLowerCase() === data.city.toLowerCase()));
 }
