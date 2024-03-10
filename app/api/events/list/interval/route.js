@@ -60,7 +60,13 @@ export async function POST(req, res) {
     }
     
    // i want all the events that any of dates between _targetDate and _targetDate2 are between targetDate1 and targetDate2
-   console.log(_targetDate, _targetDate2, targetDate1, targetDate2);
+    if ((_targetDate <= targetDate2 && _targetDate2 >= targetDate1) || (_targetDate2 >= targetDate1 && _targetDate <= targetDate2)) {
+      eventResponse.documents[i].date = interval[0];
+      if (isMulti) eventResponse.documents[i].date += ":" + interval[1];
+    } else {
+      eventResponse.documents.splice(i, 1);
+      i--;
+    }
 
   }
 
