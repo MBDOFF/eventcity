@@ -16,7 +16,7 @@
 
 .tags {
   position: fixed;
-  
+
   display: flex;
   flex-direction: column;
   padding: 30px 20px;
@@ -55,6 +55,7 @@
   padding: 20px;
 
   .event {
+    color: $txt1;
     position: relative;
     width: 700px;
     height: 200px;
@@ -160,15 +161,124 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        
+
       }
       -webkit-mask-image: linear-gradient(-45deg, black 50%, transparent 50%);
       mask-image: linear-gradient(-45deg, black 50%, transparent 50%);
     }
   }
   .today {
+    color: $txt1;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 0 30px -10px $txt1;
+
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+    width: 280px;
+    height: 280px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+
+    overflow: hidden;
+    transition: transform 0.2s ease-out;
+    box-shadow: 0 0 30px -10px $txt1;
+
+    background-size: cover;
+    background-position: center;
+
+    >div.gr1, >div.gr2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(170deg, $bg1 20%, transparent 70%);
+      opacity: 1;
+      transition: opacity 0.2s ease-out;
+    }
+    >div.gr2 {
+      background-image: linear-gradient(120deg, $acc1, $acc2);
+      opacity: 0;
+    }
+    h3 {
+      font-family: $font_s2;
+      font-size: 25px;
+    }
+    h3, p {
+      position: relative;
+      transition: h1 0.2s ease-out, p 0.2s ease-out;
+      span {
+        font-size: 13px;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+      transform: scale(102%);
+      >div.gr1 {
+        opacity: 0.2;
+      }
+      >div.gr2 {
+        opacity: 0.7;
+      }
+      h3, p {
+        filter: drop-shadow(0 0 2px $bg1);
+      }
+    }
+  }
+}
+
+
+
+
+
+
+.selectors {
+  position: fixed;
+  right: 0;
+  display: flex;
+  padding: 25px 20px;
+  width: 300px;
+
+  select, input {
+    width: 300px;
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 3px solid $bg3;
+    background-color: $bg1;
+    margin-bottom: 3px;
+  }
+}
+.explore_options_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: calc(100vh - $menu_height);
+
+  .option {
+    width: 350px;
+    height: 350px;
+    border-radius: 20px;
+    border: 3px solid $bg3;
+    
+    padding: 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+      text-align: center;
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: $bg2;
+    }
   }
 }

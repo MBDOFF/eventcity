@@ -1,4 +1,6 @@
 import c from "@/files/css/pages/events.module.scss"
+import HTMLReactParser from "html-react-parser"
+import Link from "next/link"
 
 export default function Cards({ featured }) {
   return (
@@ -7,10 +9,19 @@ export default function Cards({ featured }) {
         <div><p>EVENT<br />CITY</p></div>
         <div><p>EVENT<br />CITY</p></div>
       </div>
-      <div className={c.today} style={{ backgroundImage: "url(" + featured.image + ")" }}>
+      <Link className={c.today} style={{ backgroundImage: "url(" + featured.image + ")" }}
+        href={"/events/" + featured.$id}
+      >
+        <div className={c.gr1}></div>
+        <div className={c.gr2}></div>
         <h3>Participa acum!</h3>
-        <p>{featured.name}</p>
-      </div>
-    </div >
+        <p>{HTMLReactParser(
+          featured.name + "<br/>" +
+          "<span>" +
+          featured.location + "<br/>" +
+          "</span>"
+        )}</p>
+      </Link>
+    </div>
   )
 }

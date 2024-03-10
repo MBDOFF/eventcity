@@ -17,7 +17,9 @@ export default function Events() {
     const res = await fetch("/api/events/list/all")
     const reso = await res.json()
     setEvents([...reso]);
-    setFeatured({...reso[0]});
+    setFeatured({ ...reso[0] });
+    
+    getFeatured();
   }
   const getPrefs = async () => {
     const email = sessionStorage.getItem("email");
@@ -43,22 +45,20 @@ export default function Events() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const lat = position.coords.latitude;
-        const long = position.coords.longitude;
+        const lon = position.coords.longitude;
         const res = await fetch("/api/events/list/near", {
           method: "POST",
-          body: JSON.stringify({lat, long}),
+          body: JSON.stringify({ lat, lon }),
         })
         const reso = await res.json();
-        console.log(reso);
-        setFeatured({...reso[0]});
-      });
+        setFeatured({ ...reso[0].data });
+      })
     }
   }
 
   useEffect(() => {
     getEvents()
     getPrefs()
-    getFeatured()
   }, [])
 
   const toggleTag = (tag) => {
@@ -82,9 +82,9 @@ export default function Events() {
         </div>
         <div className={c.container_mid}>
           <EventsComp events={events} tags={tags} />
-          <Cards featured={featured}/>
+          <Cards featured={featured} />
         </div>
       </div>
     </main>
-  );
+  )
 }
