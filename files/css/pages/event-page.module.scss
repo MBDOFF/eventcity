@@ -1,0 +1,53 @@
+@import "@/files/css/base/colors.module.scss";
+@import "@/files/css/base/fonts.scss";
+
+.event_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+
+  >div {
+    width: 1000px;
+
+    >img {
+      margin-top: 30px;
+      width: 100%;
+      height: 400px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+    h6 {
+      margin: 3px 0;
+    }
+    p {
+      font-family: $font_s2;
+      font-size: 19px;
+    }
+    button {
+      display: block;
+      padding: 5px 20px;
+
+      font-family: inherit;
+      border: 3px solid $bg3;
+      border-radius: 10px;
+
+      &:hover {
+        cursor: pointer;
+        color: $bg1;
+        background-image: linear-gradient(120deg, $acc1, $acc2);
+      }
+    }
+    .profiles {
+      display: flex;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      img {
+        width: 35px;
+        height: 35px;
+        border-radius: 100vw;
+      }
+    }
+  }
+}
