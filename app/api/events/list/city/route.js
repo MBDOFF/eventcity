@@ -51,12 +51,11 @@ export async function POST(req, res) {
   });
 
 
-  listPromise.documents.sort((a, b) => {
+  filteredEvents.sort((a, b) => {
     const dateA = a.date.split(":")[0];
     const dateB = b.date.split(":")[0];
     return daysUntilDate(dateA) - daysUntilDate(dateB);
   });
 
-  listPromise.documents = listPromise.documents.filter((event) => daysUntilDate(event.date.split(":")[0]) >= 0);
-  return NextResponse.json(filteredEvents);
+  return NextResponse.json(filteredEvents.filter((event) => daysUntilDate(event.date.split(":")[0]) >= 0));
 }

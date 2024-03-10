@@ -78,6 +78,5 @@ export async function POST(req, res) {
     return daysUntilDate(dateA) - daysUntilDate(dateB);
   });
 
-  listPromise.documents = listPromise.documents.filter((event) => daysUntilDate(event.date.split(":")[0]) >= 0);
-  return NextResponse.json(eventResponse.documents);
+  return NextResponse.json(listPromise.documents.filter((event) => daysUntilDate(event.date.split(":")[0]) >= 0));
 }
