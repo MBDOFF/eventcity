@@ -34,7 +34,7 @@ export default function Events() {
     const res = await fetch("/api/events/tags")
     const reso = await res.json()
     const tagsReduced = reso.reduce((acc, tag) => {
-      acc[tag] = false;
+      acc[tag] = true;
       return acc;
     }, {});
     setTags({ ...tagsReduced })
