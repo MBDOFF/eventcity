@@ -58,10 +58,17 @@ export async function POST(req, res) {
       var year2 = parseInt(parts2[2]);
       targetDate2 = new Date(year2, month2 - 1, day2);
     }
-    if (_targetDate > targetDate2 || _targetDate2 < targetDate1) {
-      eventResponse.documents.splice(i, 1);
-      i--;
-      continue;
+    
+    if (isMulti) {
+      if (_targetDate < targetDate1 || _targetDate2 > targetDate2) {
+        eventResponse.documents.splice(i, 1);
+        i--;
+      }
+    } else {
+      if (_targetDate < targetDate1 || _targetDate > targetDate1) {
+        eventResponse.documents.splice(i, 1);
+        i--;
+      }
     }
 
   }
