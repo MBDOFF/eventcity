@@ -45,10 +45,10 @@ export default function EventPage({ params }) {
     const event_id = eventData.$id;
     const res = await fetch("/api/events/enroll/join", {
       method: "POST",
-      body: JSON.stringify({email, pass: password, event: event_id, type})
+      body: JSON.stringify({ email, pass: password, event: event_id, type })
     })
     const reso = await res.json()
-    setEventData({...reso.response})
+    setEventData({ ...reso.response })
   }
 
   console.log(eventData);
@@ -80,24 +80,24 @@ export default function EventPage({ params }) {
             </>
           }
           {!user.email ? "" :
-            <button type="button" onClick={() => {enroll("user")}}>Inscrie-te</button>
+            <button type="button" onClick={() => { enroll("user") }}>Inscrie-te</button>
           }
-          <br/>
+          <br />
 
 
           {!JSON.parse(user.vol || "{}").short_desc ? "" :
             <>
               {!(eventData.users.filter((ee) => JSON.parse(ee).type == "volunteer").length > 0) ? "" :
                 <>
-                <p>Voluntari aplicanti:</p>
-                <div className={c.profiles}>
-                  {eventData.users.filter((ee) => JSON.parse(ee).type == "volunteer").map((ee) =>
-                    <img src={JSON.parse(ee).image} alt="" />
-                  )}
-                </div>
+                  <p>Voluntari aplicanti:</p>
+                  <div className={c.profiles}>
+                    {eventData.users.filter((ee) => JSON.parse(ee).type == "volunteer").map((ee) =>
+                      <img src={JSON.parse(ee).image} alt="" />
+                    )}
+                  </div>
                 </>
               }
-              <button type="button" onClick={() => {enroll("volunteer")}}>Aplica ca voluntar</button>
+              <button type="button" onClick={() => { enroll("volunteer") }}>Aplica ca voluntar</button>
             </>
           }
 
