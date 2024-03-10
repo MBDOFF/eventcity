@@ -6,6 +6,12 @@
   align-items: flex-start;
   justify-content: space-between;
 }
+.container_mid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 75%;
+}
 
 .tags {
   display: flex;
@@ -58,6 +64,7 @@
     box-shadow: 0 0 30px -10px $txt1;
 
     background-size: cover;
+    background-position: center;
 
     >div.gr1, >div.gr2 {
       position: absolute;
@@ -71,7 +78,7 @@
     }
     >div.gr2 {
       background-image: linear-gradient(120deg, $acc1, $acc2);
-      opacity: 0.5;
+      opacity: 0;
     }
     h1 {
       font-family: $font_s2;
@@ -96,13 +103,62 @@
     }
   }
 }
-.banners {
+.cards {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  width: 200px;
+  width: 300px;
+  height: calc(100vh - $menu_height);
 
-  // >div {
-  //   width: 
-  // }
+  >div {
+    width: 300px;
+    height: 300px;
+    &:first-child {
+      margin-bottom: 20px;
+    }
+    border-radius: 20px;
+  }
+  .banner {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    div:first-child {
+      background-image: linear-gradient(120deg, $acc1, $acc2);
+      p {
+        text-align: center;
+        color: $bg2;
+        z-index: 300;
+        font-size: 60px;
+        -webkit-mask-image: linear-gradient(135deg, black 50%, transparent 50%);
+        mask-image: linear-gradient(135deg, black 50%, transparent 50%);
+      }
+    }
+    div:last-child {
+      background-color: $bg1;
+      p {
+        text-align: center;
+        color: $acc2;
+        z-index: 400;
+        font-size: 60px;
+
+        background: linear-gradient(120deg, $acc2, $acc1);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+      }
+      -webkit-mask-image: linear-gradient(-45deg, black 50%, transparent 50%);
+      mask-image: linear-gradient(-45deg, black 50%, transparent 50%);
+      box-shadow: 0 0 30px -10px $txt1;
+    }
+  }
 }
