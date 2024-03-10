@@ -72,11 +72,11 @@ export async function POST(req, res) {
   }
 
  
-  listPromise.documents.sort((a, b) => {
+  eventResponse.documents.sort((a, b) => {
     const dateA = a.date.split(":")[0];
     const dateB = b.date.split(":")[0];
     return daysUntilDate(dateA) - daysUntilDate(dateB);
   });
 
-  return NextResponse.json(listPromise.documents.filter((event) => daysUntilDate(event.date.split(":")[0]) >= 0));
+  return NextResponse.json(eventResponse.documents.filter((event) => daysUntilDate(event.date.split(":")[0]) >= 0));
 }
