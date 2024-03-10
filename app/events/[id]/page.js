@@ -76,8 +76,8 @@ export default function EventPage({ params }) {
             <>
               <p>Participanti inscrisi:</p>
               <div className={c.profiles}>
-                {eventData.users.filter((ee) => JSON.parse(ee).type == "user").map((ee) =>
-                  <img src={JSON.parse(ee).image} alt="" />
+                {eventData.users.filter((ee) => JSON.parse(ee).type == "user").map((ee, index) =>
+                  <img src={JSON.parse(ee).image} alt="" key={index} />
                 )}
               </div>
             </>
@@ -94,8 +94,8 @@ export default function EventPage({ params }) {
                 <>
                   <p>Voluntari aplicanti:</p>
                   <div className={c.profiles}>
-                    {eventData.users.filter((ee) => JSON.parse(ee).type == "volunteer").map((ee) =>
-                      <img src={JSON.parse(ee).image} alt="" />
+                    {eventData.users.filter((ee) => JSON.parse(ee).type == "volunteer").map((ee, index) =>
+                      <img src={JSON.parse(ee).image} alt="" key={index} />
                     )}
                   </div>
                 </>
